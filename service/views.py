@@ -1,7 +1,4 @@
 
-from django.shortcuts import render
-
-from rest_framework.views import APIView
 from rest_framework.generics import CreateAPIView, UpdateAPIView, ListAPIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -14,11 +11,6 @@ from .serializers import UpdateFullNameSerializer
 from .serializers import UpdateCarSerializer
 from .serializers import ExpertListSerializer
 #
-
-def index(req):
-    return render(req, 'index.html')
-
-#####
 
 class RegisterUserView(CreateAPIView):
 
@@ -41,11 +33,11 @@ class ExpertsListView(ListAPIView):
 class UpdateNameView(UpdateAPIView):
 
     queryset = User.objects.all()
-    serializer_class = UpdateFullNameSerializer
     permission_classes = (IsAuthenticated,)
+    serializer_class = UpdateFullNameSerializer
 
 class UpdateCarView(UpdateAPIView):
 
     queryset = User.objects.all()
-    serializer_class = UpdateCarSerializer
     permission_classes = (IsAuthenticated,)
+    serializer_class = UpdateCarSerializer
